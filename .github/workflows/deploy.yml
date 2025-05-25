@@ -36,14 +36,12 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan
-
         env:
-            TF_VAR_tailscale_auth_key: ${{ secrets.TAILSCALE_AUTH_KEY }}
-            TF_VAR_ssh_pub_key: ${{ secrets.SSH_PUB_KEY }}
+          TF_VAR_tailscale_auth_key: ${{ secrets.TAILSCALE_AUTH_KEY }}
+          TF_VAR_ssh_pub_key: ${{ secrets.SSH_PUB_KEY }}
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-
         env:
           TF_VAR_tailscale_auth_key: ${{ secrets.TAILSCALE_AUTH_KEY }}
           TF_VAR_ssh_pub_key: ${{ secrets.SSH_PUB_KEY }}
