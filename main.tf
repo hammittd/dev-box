@@ -21,8 +21,6 @@ resource "aws_security_group" "dev_sg" {
   name        = "dev-sg"
   description = "Tailscale-only access"
 
-  ingress {} # No public access
-
   egress {
     from_port   = 0
     to_port     = 0
