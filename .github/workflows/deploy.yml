@@ -9,18 +9,21 @@ jobs:
   deploy:
     name: Terraform Apply
     runs-on: ubuntu-latest
+    # https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services#requesting-the-access-token
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Configure AWS Credentials (OIDC)
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v4.2.1
         with:
           role-to-assume: arn:aws:iam::001512332034:role/github-actions-terraform
           role-session-name: github-actions
           aws-region: us-east-2
-          id-token: write
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
